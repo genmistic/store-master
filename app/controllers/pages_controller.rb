@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   before_action :set_cart_from_cookie
 
   def home  
-    @products = Product.includes(:category).shuffle
+   @products = Product.includes(:category).shuffle
+   OrderMailer.with(:product).send_mail.deliver_later
   end
-
 end
